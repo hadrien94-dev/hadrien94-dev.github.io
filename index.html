@@ -296,10 +296,6 @@
             color: rgba(255,255,255,0.5);
             line-height: 1.65;
         }
-        .presta-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
 
         /* ─── ZONE + CONTACT ─── */
         .zone-contact {
@@ -438,7 +434,6 @@
 </head>
 <body>
 
-    <!-- NAV -->
     <nav>
         <div class="nav-inner">
             <a href="#" class="logo">
@@ -453,7 +448,6 @@
         </div>
     </nav>
 
-    <!-- HERO -->
     <header class="hero">
         <div class="hero-bg"></div>
         <div class="hero-stripe"></div>
@@ -481,7 +475,6 @@
         </div>
     </header>
 
-    <!-- TRUST BAR -->
     <div class="trust-bar">
         <div class="trust-inner">
             <div class="trust-item">
@@ -503,7 +496,6 @@
         </div>
     </div>
 
-    <!-- PRESTATIONS -->
     <section class="prestations" id="prestations">
         <div class="section-inner">
             <p class="section-label">Ce que je fais</p>
@@ -543,7 +535,6 @@
         </div>
     </section>
 
-    <!-- ZONE + CONTACT -->
     <section class="zone-contact" id="contact">
         <div class="section-inner">
             <div class="zone-contact-grid">
@@ -581,18 +572,23 @@
                 <div>
                     <div class="form-card">
                         <h3>Demande de rappel</h3>
-                        <form onsubmit="handleSubmit(event)">
+                        <form action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="d30faa67-b86f-4cb9-890b-c2167e1726ae">
+                            <input type="hidden" name="subject" value="Nouveau message de Legendre Électricité">
+                            <input type="hidden" name="redirect" value="https://hadrien94-dev.github.io">
+                            <input type="checkbox" name="botcheck" style="display: none;">
+
                             <div class="form-group">
                                 <label>Nom / Entreprise</label>
-                                <input type="text" required placeholder="Jean Dupont">
+                                <input type="text" name="nom" required placeholder="Jean Dupont">
                             </div>
                             <div class="form-group">
                                 <label>Téléphone</label>
-                                <input type="tel" required placeholder="06 00 00 00 00">
+                                <input type="tel" name="telephone" required placeholder="06 00 00 00 00">
                             </div>
                             <div class="form-group">
                                 <label>Votre besoin</label>
-                                <textarea rows="4" required placeholder="Décrivez votre problème ou votre projet électrique…"></textarea>
+                                <textarea name="besoin" rows="4" required placeholder="Décrivez votre problème ou votre projet électrique…"></textarea>
                             </div>
                             <button type="submit" class="btn-submit">Envoyer ma demande →</button>
                         </form>
@@ -602,7 +598,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <p>
             <strong style="color: rgba(255,255,255,0.5);">Legendre Électricité</strong> — Nogent-sur-Marne (94130)<br>
@@ -610,21 +605,5 @@
             <span style="margin-top: 0.5rem; display:block;">© 2026 Legendre Électricité. Tous droits réservés.</span>
         </p>
     </footer>
-
-    <script>
-        function handleSubmit(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('.btn-submit');
-            btn.textContent = '✓ Message envoyé !';
-            btn.style.background = '#2ecc71';
-            btn.style.color = '#fff';
-            setTimeout(() => {
-                btn.textContent = 'Envoyer ma demande →';
-                btn.style.background = '';
-                btn.style.color = '';
-                e.target.reset();
-            }, 3000);
-        }
-    </script>
 </body>
 </html>
