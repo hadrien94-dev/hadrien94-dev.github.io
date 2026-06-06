@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legendre Électricité – Artisan Électricien Nogent-sur-Marne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --black: #0d0d0d;
+            --yellow: #FFD100;
+            --yellow-dark: #E6BC00;
+            --red: #E32B2B;
+            --red-dark: #C42222;
+            --gray-100: #f5f4f0;
+            --gray-200: #e8e6df;
+            --gray-400: #9e9b91;
+            --gray-600: #5c5a54;
+            --white: #ffffff;
+            --font-display: 'Barlow Condensed', sans-serif;
+            --font-body: 'Barlow', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(13,13,13,0.96);
+            border-bottom: 2px solid var(--yellow);
+            backdrop-filter: blur(8px);
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--yellow);
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo svg { width: 20px; height: 20px; }
+
+        .nav-cta {
+            background: var(--yellow);
+            color: var(--black);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 1.25rem;
+            text-decoration: none;
+            clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+            transition: background 0.15s;
+            white-space: nowrap;
+        }
+        .nav-cta:hover { background: var(--yellow-dark); }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            min-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            padding: 4rem 1.5rem 5rem;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 59px,
+                    rgba(255,209,0,0.04) 60px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 59px,
+                    rgba(255,209,0,0.04) 60px
+                );
+            pointer-events: none;
+        }
+        .hero-stripe {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: repeating-linear-gradient(90deg, var(--yellow) 0 40px, var(--black) 40px 48px);
+        }
+        .hero-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,209,0,0.12);
+            border: 1px solid rgba(255,209,0,0.3);
+            color: var(--yellow);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 10vw, 7.5rem);
+            font-weight: 900;
+            line-height: 0.92;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        h1 .accent { color: var(--yellow); display: block; }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 520px;
+            margin-bottom: 2.5rem;
+            line-height: 1.55;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .btn-urgence {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--red);
+            color: #fff;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+            transition: background 0.15s, transform 0.1s;
+        }
+        .btn-urgence:hover { background: var(--red-dark); transform: translateY(-2px); }
+        .btn-urgence svg { width: 20px; height: 20px; animation: ring 2s ease-in-out infinite; }
+        @keyframes ring {
+            0%, 100% { transform: rotate(0); }
+            10%, 30% { transform: rotate(-10deg); }
+            20%, 40% { transform: rotate(10deg); }
+            50% { transform: rotate(0); }
+        }
+
+        .btn-devis {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.9rem 1.5rem;
+            text-decoration: none;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        .btn-devis:hover { border-color: var(--yellow); color: var(--yellow); }
+
+        /* ─── TRUST BAR ─── */
+        .trust-bar {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 1rem 1.5rem;
+            overflow: hidden;
+        }
+        .trust-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .trust-item svg { width: 18px; height: 18px; }
+
+        /* ─── SECTIONS ─── */
+        section { padding: 5rem 1.5rem; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 0.75rem;
+        }
+        h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 3rem;
+        }
+
+        /* ─── PRESTATIONS ─── */
+        .prestations { background: #111; }
+        .presta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px;
+            border: 1px solid #222;
+        }
+        .presta-card {
+            background: #111;
+            padding: 2.5rem 2rem;
+            border: 1px solid #222;
+            transition: background 0.2s, border-color 0.2s;
+            position: relative;
+        }
+        .presta-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--yellow);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.2s;
+        }
+        .presta-card:hover { background: #161616; border-color: #333; }
+        .presta-card:hover::before { transform: scaleX(1); }
+        .presta-num {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(255,209,0,0.12);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        .presta-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.75rem;
+        }
+        .presta-card p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.65;
+        }
+        .presta-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ─── ZONE + CONTACT ─── */
+        .zone-contact {
+            background: var(--black);
+            border-top: 1px solid #1e1e1e;
+        }
+        .zone-contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        @media (max-width: 768px) {
+            .zone-contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+        .zone-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 1.25rem;
+        }
+        .zone-tag {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.35rem 0.8rem;
+        }
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #1e1e1e;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+        .info-row:first-child { border-top: 1px solid #1e1e1e; margin-top: 1.5rem; }
+        .info-row svg { color: var(--yellow); width: 18px; height: 18px; flex-shrink: 0; }
+        .info-row strong { color: #fff; font-weight: 600; margin-right: 4px; }
+
+        /* ─── FORM ─── */
+        .form-card {
+            background: #111;
+            border: 1px solid #222;
+            padding: 2.5rem;
+        }
+        .form-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--yellow);
+            margin-bottom: 1.75rem;
+        }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 0.4rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: #0d0d0d;
+            border: 1px solid #2a2a2a;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            padding: 0.75rem 1rem;
+            transition: border-color 0.15s;
+            outline: none;
+            resize: none;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus { border-color: var(--yellow); }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(255,255,255,0.2); }
+        .btn-submit {
+            width: 100%;
+            background: var(--yellow);
+            color: var(--black);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: background 0.15s, transform 0.1s;
+        }
+        .btn-submit:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: #080808;
+            border-top: 2px solid #1a1a1a;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        footer p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.25);
+            line-height: 1.8;
+        }
+        footer a { color: var(--yellow); text-decoration: none; }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-content > * {
+            animation: fadeUp 0.6s ease both;
+        }
+        .hero-content > *:nth-child(1) { animation-delay: 0.05s; }
+        .hero-content > *:nth-child(2) { animation-delay: 0.15s; }
+        .hero-content > *:nth-child(3) { animation-delay: 0.25s; }
+        .hero-content > *:nth-child(4) { animation-delay: 0.35s; }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .nav-cta { font-size: 0.85rem; padding: 0.45rem 1rem; }
+            .logo { font-size: 1.2rem; }
+            section { padding: 3.5rem 1.25rem; }
+            .form-card { padding: 1.75rem 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M11 2L3 11h6l-1 7 8-9h-6l1-7z"/>
+                </svg>
+                Legendre Électricité
+            </a>
+            <a href="tel:0667087258" class="nav-cta">
+                📞 06 67 08 72 58
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-stripe"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="4"/></svg>
+                Artisan local · Nogent-sur-Marne
+            </div>
+            <h1>
+                Électricien
+                <span class="accent">de confiance</span>
+            </h1>
+            <p class="hero-sub">
+                Dépannage urgent, mise aux normes et installations électriques à Nogent-sur-Marne et dans un rayon de 15 km. Devis gratuit.
+            </p>
+            <div class="hero-btns">
+                <a href="tel:0667087258" class="btn-urgence">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
+                    Urgence : 06 67 08 72 58
+                </a>
+                <a href="#contact" class="btn-devis">Demander un devis →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+        <div class="trust-inner">
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Artisan certifié
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Réponse rapide
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Devis gratuit
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Norme NF C 15-100
+            </div>
+        </div>
+    </div>
+
+    <!-- PRESTATIONS -->
+    <section class="prestations" id="prestations">
+        <div class="section-inner">
+            <p class="section-label">Ce que je fais</p>
+            <h2>Mes prestations</h2>
+            <div class="presta-grid">
+                <div class="presta-card">
+                    <div class="presta-num">01</div>
+                    <h3>Dépannage urgent</h3>
+                    <p>Coupure de courant, prise ou interrupteur défaillant, recherche de panne complexe. Intervention 7j/7, disponible rapidement.</p>
+                </div>
+                <div class="presta-card">
+                    <div class="presta-num">02</div>
+                    <h3>Mise aux normes</h3>
+                    <p>Remise en conformité complète de votre tableau électrique selon la norme NF C 15-100. Attestation Consuel si nécessaire.</p>
+                </div>
+                <div class="presta-card">
+                    <div class="presta-num">03</div>
+                    <h3>Installations</h3>
+                    <p>Pose de prises et circuits supplémentaires, éclairage LED, radiateurs électriques, VMC, volets roulants et domotique.</p>
+                </div>
+                <div class="presta-card">
+                    <div class="presta-num">04</div>
+                    <h3>Rénovation</h3>
+                    <p>Refonte complète de l'installation électrique lors d'une rénovation, extension ou aménagement de combles ou sous-sols.</p>
+                </div>
+                <div class="presta-card">
+                    <div class="presta-num">05</div>
+                    <h3>Borne de recharge</h3>
+                    <p>Installation de borne IRVE pour véhicule électrique à votre domicile ou en copropriété. Dossier et démarches compris.</p>
+                </div>
+                <div class="presta-card">
+                    <div class="presta-num">06</div>
+                    <h3>Diagnostic</h3>
+                    <p>Audit complet de votre installation existante avec rapport détaillé et recommandations hiérarchisées par priorité.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ZONE + CONTACT -->
+    <section class="zone-contact" id="contact">
+        <div class="section-inner">
+            <div class="zone-contact-grid">
+                <div>
+                    <p class="section-label">Où j'interviens</p>
+                    <h2>Zone d'intervention</h2>
+                    <p style="color: rgba(255,255,255,0.5); font-size: 0.95rem; line-height: 1.7;">
+                        Basé à <strong style="color:#fff">Nogent-sur-Marne (94130)</strong>, je me déplace rapidement dans un rayon de 15 km autour de Nogent. Pour les urgences, je priorise votre appel.
+                    </p>
+                    <div class="zone-tags">
+                        <span class="zone-tag">Nogent-sur-Marne</span>
+                        <span class="zone-tag">Le Perreux-sur-Marne</span>
+                        <span class="zone-tag">Bry-sur-Marne</span>
+                        <span class="zone-tag">Fontenay-sous-Bois</span>
+                        <span class="zone-tag">Champigny-sur-Marne</span>
+                        <span class="zone-tag">Vincennes</span>
+                        <span class="zone-tag">Saint-Maur-des-Fossés</span>
+                        <span class="zone-tag">Paris Est (20ème)</span>
+                    </div>
+
+                    <div class="info-row">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span><strong>Disponibilité :</strong> Urgences traitées en priorité</span>
+                    </div>
+                    <div class="info-row">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                        <span><strong>Téléphone :</strong> <a href="tel:0667087258" style="color: var(--yellow); text-decoration: none;">06 67 08 72 58</a></span>
+                    </div>
+                    <div class="info-row">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        <span><strong>Devis :</strong> Gratuit et sans engagement</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-card">
+                        <h3>Demande de rappel</h3>
+                        <form onsubmit="handleSubmit(event)">
+                            <div class="form-group">
+                                <label>Nom / Entreprise</label>
+                                <input type="text" required placeholder="Jean Dupont">
+                            </div>
+                            <div class="form-group">
+                                <label>Téléphone</label>
+                                <input type="tel" required placeholder="06 00 00 00 00">
+                            </div>
+                            <div class="form-group">
+                                <label>Votre besoin</label>
+                                <textarea rows="4" required placeholder="Décrivez votre problème ou votre projet électrique…"></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Envoyer ma demande →</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            <strong style="color: rgba(255,255,255,0.5);">Legendre Électricité</strong> — Nogent-sur-Marne (94130)<br>
+            <a href="tel:0667087258">06 67 08 72 58</a> · Artisan indépendant · Devis gratuit<br>
+            <span style="margin-top: 0.5rem; display:block;">© 2026 Legendre Électricité. Tous droits réservés.</span>
+        </p>
+    </footer>
+
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.btn-submit');
+            btn.textContent = '✓ Message envoyé !';
+            btn.style.background = '#2ecc71';
+            btn.style.color = '#fff';
+            setTimeout(() => {
+                btn.textContent = 'Envoyer ma demande →';
+                btn.style.background = '';
+                btn.style.color = '';
+                e.target.reset();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
