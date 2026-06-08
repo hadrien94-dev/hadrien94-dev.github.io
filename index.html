@@ -876,8 +876,16 @@
             })
             .then(function(response) {
                 if (response.ok) {
-                    document.getElementById('successMessage').style.display = 'flex';
+                    var successOverlay = document.getElementById('successMessage');
+                    successOverlay.style.display = 'flex';
                     form.reset();
+                    
+                    setTimeout(function() {
+                        successOverlay.style.display = 'none';
+                        btn.style.opacity = '1';
+                        btn.disabled = false;
+                        btn.innerText = 'Envoyer ma demande →';
+                    }, 3000);
                 } else {
                     alert("Une erreur est survenue lors de l'envoi. Merci de réessayer.");
                     btn.style.opacity = '1';
