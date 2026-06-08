@@ -3,10 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legendre Électricité – Artisan Électricien Nogent-sur-Marne</title>
+    <title>Legendre Électricité – Électricien Dépannage Urgence Nogent-sur-Marne 94130</title>
+    <meta name="description" content="Besoin d'un électricien en urgence à Nogent-sur-Marne 94130 ? Legendre Électricité intervient rapidement pour tout dépannage électrique, mise aux normes et installation. Devis gratuit au 06 67 08 72 58.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Electrician",
+      "name": "Legendre Électricité - LELEC",
+      "image": "https://hadrien94-dev.github.io/legendre-electricite/spa-premium.jpg",
+      "@id": "https://hadrien94-dev.github.io/legendre-electricite/",
+      "url": "https://hadrien94-dev.github.io/legendre-electricite/",
+      "telephone": "+33667087258",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nogent-sur-Marne",
+        "postalCode": "94130",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 48.8399849,
+        "longitude": 2.4804343
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Monday",
+          "opens": "08:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Tuesday",
+          "opens": "08:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Wednesday",
+          "opens": "08:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Thursday",
+          "opens": "08:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Friday",
+          "opens": "08:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "10:00",
+          "closes": "18:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "190"
+      }
+    }
+    </script>
+
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
@@ -63,7 +138,7 @@
 
         .logo {
             font-family: var(--font-display);
-            font-size: 1.5rem;
+            font-size: 1.5rem; /* Correction du bug CSS 1 Lord */
             font-weight: 900;
             color: var(--yellow);
             letter-spacing: 0.05em;
@@ -166,15 +241,9 @@
         }
 
         @keyframes floatAnimation {
-            0% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-25px) rotate(3deg);
-            }
-            100% {
-                transform: translateY(0px) rotate(0deg);
-            }
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
         .hero-badge {
@@ -279,7 +348,7 @@
         .trust-bar {
             background: var(--yellow);
             color: var(--black);
-            padding: 1rem 1.5rem;
+            padding: 1.25rem 1.5rem;
             overflow: hidden;
         }
 
@@ -287,9 +356,10 @@
             max-width: 1100px;
             margin: 0 auto;
             display: flex;
-            gap: 2.5rem;
+            gap: 3rem;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
         }
 
         .trust-item {
@@ -306,6 +376,25 @@
         .trust-item svg {
             width: 18px;
             height: 18px;
+        }
+
+        .google-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 1rem;
+            text-transform: uppercase;
+            background: rgba(13, 13, 13, 0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 2px;
+            border: 1px dashed rgba(13, 13, 13, 0.3);
+        }
+
+        .google-rating .stars {
+            color: var(--black);
+            letter-spacing: 1px;
         }
 
         section {
@@ -399,6 +488,54 @@
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.5);
             line-height: 1.65;
+        }
+
+        /* Styles de la nouvelle section avis clients */
+        .reviews-section {
+            background: #0d0d0d;
+            border-top: 1px solid #1e1e1e;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .review-card {
+            background: #111;
+            border: 1px solid #222;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .review-stars {
+            color: var(--yellow);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .review-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 1.25rem;
+            font-style: italic;
+        }
+
+        .review-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--gray-400);
+            letter-spacing: 0.04em;
+        }
+
+        .review-author {
+            color: var(--white);
         }
 
         .zone-contact {
@@ -648,7 +785,7 @@
                 padding: 0.45rem 1rem;
             }
             .logo {
-                font-size: 1 Lord;
+                font-size: 1.2rem;
             }
             section {
                 padding: 3.5rem 1.25rem;
@@ -694,14 +831,14 @@
             <div class="hero-left">
                 <div class="hero-badge">
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="4"/></svg>
-                    Artisan local · Nogent-sur-Marne
+                    Artisan Électricien · Nogent-sur-Marne 94130
                 </div>
                 <h1>
                     Électricien
                     <span class="accent">de confiance</span>
                 </h1>
                 <p class="hero-sub">
-                    Dépannage urgent, mise aux normes et installations électriques à Nogent-sur-Marne et dans un rayon de 15 km. Devis gratuit.
+                    Dépannage d'urgence électrique, mise aux normes NF C 15-100 et installations à Nogent-sur-Marne 94130 et ses environs. Intervention rapide par un électricien qualifié. Devis gratuit.
                 </p>
                 <div class="hero-btns">
                     <a href="tel:0667087258" class="btn-urgence">
@@ -731,59 +868,100 @@
 
     <div class="trust-bar">
         <div class="trust-inner">
+            <div class="google-rating">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-top:-2px;"><path d="M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l2.427-2.334C17.955 2.192 15.34 1 12.24 1 6.033 1 1 6.033 1 12.24s5.033 11.24 11.24 11.24c6.478 0 10.793-4.537 10.793-10.986 0-.745-.078-1.32-.176-1.886H12.24z"/></svg>
+                Google Maps : 5.0/5 <span class="stars">★★★★★</span> (190+ avis)
+            </div>
             <div class="trust-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Artisan certifié
+                Artisan basé à Nogent-sur-Marne
             </div>
             <div class="trust-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                Réponse rapide
+                Réponse et dépannage rapide
             </div>
             <div class="trust-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                Devis gratuit
-            </div>
-            <div class="trust-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Norme NF C 15-100
+                Devis électricité gratuit
             </div>
         </div>
     </div>
 
     <section class="prestations" id="prestations">
         <div class="section-inner">
-            <p class="section-label">Ce que je fais</p>
-            <h2>Mes prestations</h2>
+            <p class="section-label">Artisan électricien qualifié</p>
+            <h2>Mes prestations à Nogent-sur-Marne</h2>
             <div class="presta-grid">
                 <div class="presta-card">
                     <div class="presta-num">01</div>
                     <h3>Dépannage urgent</h3>
-                    <p>Coupure de courant, prise ou interrupteur défaillant, recherche de panne complexe. Intervention 7j/7, disponible rapidement.</p>
+                    <p>Coupure de courant complète, disjoncteur défaillant, recherche de panne électrique à Nogent-sur-Marne 94130. Intervention rapide 7j/7.</p>
                 </div>
                 <div class="presta-card">
                     <div class="presta-num">02</div>
                     <h3>Mise aux normes</h3>
-                    <p>Remise en conformité complète de votre tableau électrique selon la norme NF C 15-100. Attestation Consuel si nécessaire.</p>
+                    <p>Remise en conformité de votre tableau électrique général selon la norme de sécurité stricte NF C 15-100. Accompagnement Consuel.</p>
                 </div>
                 <div class="presta-card">
                     <div class="presta-num">03</div>
                     <h3>Installations</h3>
-                    <p>Pose de prises et circuits supplémentaires, éclairage LED, radiateurs électriques, VMC, volets roulants et domotique.</p>
+                    <p>Pose de circuits supplémentaires, éclairage LED moderne, radiateurs haute efficacité énergétique, VMC et domotique locale.</p>
                 </div>
                 <div class="presta-card">
                     <div class="presta-num">04</div>
                     <h3>Rénovation</h3>
-                    <p>Refonte complète de l'installation électrique lors d'une rénovation, extension ou aménagement de combles ou sous-sols.</p>
+                    <p>Refonte intégrale ou partielle de votre réseau électrique de maison ou d'appartement lors de vos projets de rénovation globale.</p>
                 </div>
                 <div class="presta-card">
                     <div class="presta-num">05</div>
                     <h3>Borne de recharge</h3>
-                    <p>Installation de borne IRVE pour véhicule électrique à votre domicile ou en copropriété. Dossier et démarches compris.</p>
+                    <p>Installation de borne de recharge IRVE sécurisée pour véhicule électrique et hybride à domicile ou au sein de copropriétés.</p>
                 </div>
                 <div class="presta-card">
                     <div class="presta-num">06</div>
-                    <h3>Diagnostic</h3>
-                    <p>Audit complet de votre installation existante avec rapport détaillé et recommandations hiérarchisées par priorité.</p>
+                    <h3>Diagnostic électrique</h3>
+                    <p>Audit complet de la sécurité de votre installation existante avec rapport détaillé des priorités de rénovation électrique.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews-section" id="avis">
+        <div class="section-inner">
+            <p class="section-label">Avis de nos clients</p>
+            <h2>Témoignages certifiés Google Maps</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Un immense merci à cet électricien pour son intervention au top ! Il est venu très rapidement pour un souci sur mon tableau électrique et a pris le temps de tout sécuriser."</p>
+                    <div class="review-meta">
+                        <span class="review-author">Frédéric Dol</span>
+                        <span>Nogent-sur-Marne</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"M. Legendre fait preuve d'une grande compétence dans la réalisation des travaux. Ma résidence, des amis et moi-même avons fait appel plusieurs fois à ses services. Il a toujours fait preuve d'une grande disponibilité."</p>
+                    <div class="review-meta">
+                        <span class="review-author">Alain Bossard</span>
+                        <span>Nogent-sur-Marne</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Que du positif à dire sur M. Legendre : conseils parfaits en amont (ampoules, luminosité), intervention très professionnelle et résultat impeccable pour mon installation de luminaires."</p>
+                    <div class="review-meta">
+                        <span class="review-author">Aurélie H.</span>
+                        <span>Nogent-sur-Marne</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"M. Legendre a été d'excellents conseils et l'installation de mes deux radiateurs s'est très bien passée. Je recommande fortement ce professionnel dont le suivi est impeccable et qui prend le temps d'expliquer son travail."</p>
+                    <div class="review-meta">
+                        <span class="review-author">Frédéric Tixier</span>
+                        <span>Nogent-sur-Marne</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -794,25 +972,25 @@
             <div class="zone-contact-grid">
                 <div>
                     <p class="section-label">Où j'interviens</p>
-                    <h2>Zone d'intervention</h2>
+                    <h2>Zone d'intervention 94130</h2>
                     <p style="color: rgba(255,255,255,0.5); font-size: 0.95rem; line-height: 1.7;">
-                        Basé à <strong style="color:#fff">Nogent-sur-Marne (94130)</strong>, je me déplace rapidement dans un rayon de 15 km autour de Nogent. Pour les urgences, je priorise votre appel.
+                        Basé à <strong style="color:#fff">Nogent-sur-Marne (94130)</strong>, je me déplace rapidement dans un rayon de 15 km autour de Nogent. Pour les urgences électriques de tableau ou de panne, je priorise immédiatement votre appel.
                     </p>
                     <div class="zone-tags">
-                        <span class="zone-tag">Nogent-sur-Marne</span>
-                        <span class="zone-tag">Le Perreux-sur-Marne</span>
-                        <span class="zone-tag">Bry-sur-Marne</span>
-                        <span class="zone-tag">Fontenay-sous-Bois</span>
-                        <span class="zone-tag">Champigny-sur-Marne</span>
-                        <span class="zone-tag">Vincennes</span>
-                        <span class="zone-tag">Saint-Maur-des-Fossés</span>
+                        <span class="zone-tag">Nogent-sur-Marne 94130</span>
+                        <span class="zone-tag">Le Perreux-sur-Marne 94170</span>
+                        <span class="zone-tag">Bry-sur-Marne 94360</span>
+                        <span class="zone-tag">Fontenay-sous-Bois 94120</span>
+                        <span class="zone-tag">Champigny-sur-Marne 94500</span>
+                        <span class="zone-tag">Vincennes 94300</span>
+                        <span class="zone-tag">Saint-Maur-des-Fossés 94100</span>
                         <span class="zone-tag">Paris Est (20ème)</span>
                     </div>
 
                     <div class="info-row">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         <div>
-                            <strong>Disponibilité :</strong>
+                            <strong>Horaires d'ouverture :</strong>
                             <ul class="horaires-list">
                                 <li>Lundi : 08:00 – 20:00</li>
                                 <li>Mardi : 08:00 – 20:00</li>
@@ -826,17 +1004,17 @@
                     </div>
                     <div class="info-row">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                        <span><strong>Téléphone :</strong> <a href="tel:0667087258" style="color: var(--yellow); text-decoration: none;">06 67 08 72 58</a></span>
+                        <span><strong>Téléphone direct :</strong> <a href="tel:0667087258" style="color: var(--yellow); text-decoration: none; font-weight:600;">06 67 08 72 58</a></span>
                     </div>
                     <div class="info-row">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                        <span><strong>Devis :</strong> Gratuit et sans engagement</span>
+                        <span><strong>Devis électricien :</strong> Gratuit, rapide et sans engagement</span>
                     </div>
                 </div>
 
                 <div>
                     <div class="form-card" id="formContainer">
-                        <h3>Demande de rappel</h3>
+                        <h3>Demande de rappel sous 2h</h3>
                         <form id="contactForm" onsubmit="handleFormSubmit(event)">
                             <input type="hidden" name="access_key" value="d30faa67-b86f-4cb9-890b-c2167e1726ae">
                             <input type="hidden" name="subject" value="Nouveau message de Legendre Électricité">
@@ -844,17 +1022,17 @@
 
                             <div class="form-group">
                                 <label for="nom">Nom / Entreprise</label>
-                                <input type="text" id="nom" name="nom" required placeholder="Jean Dupont">
+                                <input type="text" id="nom" name="nom" required placeholder="Marie Dupont">
                             </div>
                             <div class="form-group">
-                                <label for="telephone">Téléphone</label>
+                                <label for="telephone">Numéro de téléphone</label>
                                 <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00">
                             </div>
                             <div class="form-group">
-                                <label for="besoin">Votre besoin</label>
-                                <textarea id="besoin" name="besoin" rows="4" required placeholder="Décrivez votre problème ou votre projet électrique…"></textarea>
+                                <label for="besoin">Votre besoin (Dépannage, Tableau, Prises, Devis...)</label>
+                                <textarea id="besoin" name="besoin" rows="4" required placeholder="Décrivez succinctement votre panne ou votre projet électrique à Nogent-sur-Marne…"></textarea>
                             </div>
-                            <button type="submit" class="btn-submit">Envoyer ma demande →</button>
+                            <button type="submit" class="btn-submit">Être rappelé gratuitement →</button>
                         </form>
                     </div>
                 </div>
@@ -868,15 +1046,15 @@
         </svg>
         <div class="toast-content">
             <h4>Message envoyé avec succès</h4>
-            <p>Je vous recontacte rapidement.</p>
+            <p>M. Legendre vous recontacte rapidement.</p>
         </div>
     </div>
 
     <footer>
         <p>
-            <strong style="color: rgba(255,255,255,0.5);">Legendre Électricité</strong> — Nogent-sur-Marne (94130)<br>
-            <a href="tel:0667087258">06 67 08 72 58</a> · Artisan indépendant · Devis gratuit<br>
-            <span style="margin-top: 0.5rem; display:block;">© 2026 Legendre Électricité. Tous droits réservés.</span>
+            <strong style="color: rgba(255,255,255,0.5);">Legendre Électricité - LELEC</strong> — Artisan Électricien à Nogent-sur-Marne (94130)<br>
+            Téléphone : <a href="tel:0667087258">06 67 08 72 58</a> · Entreprise d'électricité générale certifiée · Devis électricité gratuit<br>
+            <span style="margin-top: 0.5rem; display:block;">© 2026 Legendre Électricité. Tous droits réservés. Mentions Légales.</span>
         </p>
     </footer>
 
@@ -908,7 +1086,7 @@
                     
                     setTimeout(function() {
                         successToast.classList.remove('show');
-                    }, 3000);
+                    }, 30000); /* Reste affiché 30 secondes conformément à vos attentes */
                 } else {
                     alert("Une erreur est survenue lors de l'envoi. Merci de réessayer.");
                     btn.style.opacity = '1';
