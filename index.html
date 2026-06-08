@@ -479,6 +479,7 @@
             background: #111;
             border: 1px solid #222;
             padding: 2.5rem;
+            position: relative;
         }
 
         .form-card h3 {
@@ -547,6 +548,36 @@
         .btn-submit:hover {
             background: var(--yellow-dark);
             transform: translateY(-1px);
+        }
+
+        .success-box {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 3rem 1rem;
+            animation: fadeUp 0.4s ease both;
+        }
+
+        .success-box svg {
+            color: var(--yellow);
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+        }
+
+        .success-box h4 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .success-box p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
         }
 
         footer {
@@ -701,7 +732,7 @@
                 <div class="presta-card">
                     <div class="presta-num">03</div>
                     <h3>Installations</h3>
-                    <p>Pose de prises et circuits supplémentaires, éclairage LED, radiateurs électriques, VMC, volets roulants et domotique.</p>
+                    <p>Pose de prises et circuits supplémentaires, éclairage LED, radiateurs électriques, VMC, volets roulants and domotique.</p>
                 </div>
                 <div class="presta-card">
                     <div class="presta-num">04</div>
@@ -757,27 +788,37 @@
                 </div>
 
                 <div>
-                    <div class="form-card">
-                        <h3>Demande de rappel</h3>
-                        <form action="https://api.web3forms.com/submit" method="POST">
-                            <input type="hidden" name="access_key" value="d30faa67-b86f-4cb9-890b-c2167e1726ae">
-                            <input type="hidden" name="subject" value="Nouveau message de Legendre Électricité">
-                            <input type="hidden" name="redirect" value="https://hadrien94-dev.github.io/legendre-electricite/">
-                            <input type="checkbox" name="botcheck" style="display: none;">
+                    <div class="form-card" id="formCard">
+                        <div id="formContent">
+                            <h3>Demande de rappel</h3>
+                            <form id="contactForm" onsubmit="sendForm(event)">
+                                <input type="hidden" name="access_key" value="d30faa67-b86f-4cb9-890b-c2167e1726ae">
+                                <input type="hidden" name="subject" value="Nouveau message de Legendre Électricité">
+                                <input type="checkbox" name="botcheck" style="display: none;">
 
-                            <div class="form-group">
-                                <label>Nom / Entreprise</label>
-                                <input type="text" name="nom" required placeholder="Jean Dupont">
-                            </div>
-                            <div class="form-group">
-                                <label>Téléphone</label>                                 <input type="tel" name="telephone" required placeholder="06 00 00 00 00">
-                            </div>
-                            <div class="form-group">
-                                <label>Votre besoin</label>
-                                <textarea name="besoin" rows="4" required placeholder="Décrivez votre problème ou votre projet électrique…"></textarea>
-                            </div>
-                            <button type="submit" class="btn-submit">Envoyer ma demande →</button>
-                        </form>
+                                <div class="form-group">
+                                    <label for="nom">Nom / Entreprise</label>
+                                    <input type="text" id="nom" name="nom" required placeholder="Jean Dupont">
+                                </div>
+                                <div class="form-group">
+                                    <label for="telephone">Téléphone</label>
+                                    <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00">
+                                </div>
+                                <div class="form-group">
+                                    <label for="besoin">Votre besoin</label>
+                                    <textarea id="besoin" name="besoin" rows="4" required placeholder="Décrivez votre problème ou votre projet électrique…"></textarea>
+                                </div>
+                                <button type="submit" class="btn-submit" id="submitBtn">Envoyer ma demande →</button>
+                            </form>
+                        </div>
+                        
+                        <div class="success-box" id="successBox">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <h4>Message envoyé !</h4>
+                            <p>Merci, je vous recontacte dans les plus brefs délais.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -791,5 +832,38 @@
             <span style="margin-top: 0.5rem; display:block;">© 2026 Legendre Électricité. Tous droits réservés.</span>
         </p>
     </footer>
+
+    <script>
+        function sendForm(event) {
+            event.preventDefault();
+            
+            var form = document.getElementById('contactForm');
+            var submitBtn = document.getElementById('submitBtn');
+            var formData = new FormData(form);
+            
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Envoi en cours...";
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    document.getElementById('formContent').style.display = 'none';
+                    document.getElementById('successBox').style.display = 'flex';
+                } else {
+                    alert("Une erreur est survenue. Merci de réessayer.");
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "Envoyer ma demande →";
+                }
+            })
+            .catch(function(error) {
+                alert("Erreur de réseau. Vérifiez votre connexion.");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Envoyer ma demande →";
+            });
+        }
+    </script>
 </body>
 </html>
