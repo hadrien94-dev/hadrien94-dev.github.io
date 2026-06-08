@@ -1,1 +1,1 @@
-# legendre elc
+# legendre elec
