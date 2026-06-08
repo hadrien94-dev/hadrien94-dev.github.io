@@ -563,37 +563,45 @@
             transform: translateY(-1px);
         }
 
-        .success-overlay {
-            display: none;
-            position: absolute;
-            inset: 0;
-            background: #111;
-            z-index: 10;
-            flex-direction: column;
+        .success-toast {
+            position: fixed;
+            bottom: 24px;
+            right: -400px;
+            background: #1e4620;
+            border: 1px solid #388e3c;
+            border-left: 5px solid #4caf50;
+            padding: 1rem 1.5rem;
+            z-index: 1000;
+            display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
+            gap: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            max-width: 340px;
         }
 
-        .success-overlay svg {
-            color: var(--yellow);
-            width: 48px;
-            height: 48px;
-            margin-bottom: 1rem;
+        .success-toast.show {
+            right: 24px;
         }
 
-        .success-overlay h4 {
+        .success-toast svg {
+            color: #4caf50;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .toast-content h4 {
             font-family: var(--font-display);
-            font-size: 1.6rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             color: var(--white);
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
         }
 
-        .success-overlay p {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.6);
+        .toast-content p {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         footer {
@@ -647,6 +655,18 @@
             }
             .form-card {
                 padding: 1.75rem 1.25rem;
+            }
+            .success-toast {
+                left: 16px;
+                right: 16px;
+                bottom: 16px;
+                max-width: none;
+                transform: translateY(150px);
+                transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+            .success-toast.show {
+                right: 16px;
+                transform: translateY(0);
             }
         }
     </style>
@@ -836,19 +856,21 @@
                             </div>
                             <button type="submit" class="btn-submit">Envoyer ma demande →</button>
                         </form>
-
-                        <div class="success-overlay" id="successMessage">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <h4>Message envoyé avec succès</h4>
-                            <p>Je vous recontacte rapidement.</p>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="success-toast" id="successMessage">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <div class="toast-content">
+            <h4>Message envoyé avec succès</h4>
+            <p>Je vous recontacte rapidement.</p>
+        </div>
+    </div>
 
     <footer>
         <p>
@@ -876,15 +898,16 @@
             })
             .then(function(response) {
                 if (response.ok) {
-                    var successOverlay = document.getElementById('successMessage');
-                    successOverlay.style.display = 'flex';
+                    var successToast = document.getElementById('successMessage');
+                    successToast.classList.add('show');
                     form.reset();
                     
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                    btn.innerText = 'Envoyer ma demande →';
+                    
                     setTimeout(function() {
-                        successOverlay.style.display = 'none';
-                        btn.style.opacity = '1';
-                        btn.disabled = false;
-                        btn.innerText = 'Envoyer ma demande →';
+                        successToast.classList.remove('show');
                     }, 3000);
                 } else {
                     alert("Une erreur est survenue lors de l'envoi. Merci de réessayer.");
