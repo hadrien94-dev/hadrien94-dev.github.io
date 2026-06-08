@@ -449,7 +449,7 @@
 
         .info-row {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
             padding: 0.9rem 0;
             border-bottom: 1px solid #1e1e1e;
@@ -467,12 +467,25 @@
             width: 18px;
             height: 18px;
             flex-shrink: 0;
+            margin-top: 2px;
         }
 
         .info-row strong {
             color: #fff;
             font-weight: 600;
             margin-right: 4px;
+        }
+
+        .horaires-list {
+            list-style: none;
+            margin-top: 0.3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .horaires-list li {
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .form-card {
@@ -550,34 +563,37 @@
             transform: translateY(-1px);
         }
 
-        .success-box {
+        .success-overlay {
             display: none;
+            position: absolute;
+            inset: 0;
+            background: #111;
+            z-index: 10;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 3rem 1rem;
-            animation: fadeUp 0.4s ease both;
+            padding: 2rem;
         }
 
-        .success-box svg {
+        .success-overlay svg {
             color: var(--yellow);
             width: 48px;
             height: 48px;
             margin-bottom: 1rem;
         }
 
-        .success-box h4 {
+        .success-overlay h4 {
             font-family: var(--font-display);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
             color: var(--white);
+            margin-bottom: 0.5rem;
         }
 
-        .success-box p {
-            color: rgba(255, 255, 255, 0.6);
+        .success-overlay p {
             font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         footer {
@@ -624,7 +640,7 @@
                 padding: 0.45rem 1rem;
             }
             .logo {
-                font-size: 1.2rem;
+                font-size: 1 Lord;
             }
             section {
                 padding: 3.5rem 1.25rem;
@@ -732,7 +748,7 @@
                 <div class="presta-card">
                     <div class="presta-num">03</div>
                     <h3>Installations</h3>
-                    <p>Pose de prises et circuits supplémentaires, éclairage LED, radiateurs électriques, VMC, volets roulants and domotique.</p>
+                    <p>Pose de prises et circuits supplémentaires, éclairage LED, radiateurs électriques, VMC, volets roulants et domotique.</p>
                 </div>
                 <div class="presta-card">
                     <div class="presta-num">04</div>
@@ -775,7 +791,18 @@
 
                     <div class="info-row">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span><strong>Disponibilité :</strong> Urgences traitées en priorité</span>
+                        <div>
+                            <strong>Disponibilité :</strong>
+                            <ul class="horaires-list">
+                                <li>Lundi : 08:00 – 20:00</li>
+                                <li>Mardi : 08:00 – 20:00</li>
+                                <li>Mercredi : 08:00 – 20:00</li>
+                                <li>Jeudi : 08:00 – 20:00</li>
+                                <li>Vendredi : 08:00 – 20:00</li>
+                                <li>Samedi : 09:00 – 19:00</li>
+                                <li>Dimanche : 10:00 – 18:00</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="info-row">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -788,36 +815,34 @@
                 </div>
 
                 <div>
-                    <div class="form-card" id="formCard">
-                        <div id="formContent">
-                            <h3>Demande de rappel</h3>
-                            <form id="contactForm" onsubmit="sendForm(event)">
-                                <input type="hidden" name="access_key" value="d30faa67-b86f-4cb9-890b-c2167e1726ae">
-                                <input type="hidden" name="subject" value="Nouveau message de Legendre Électricité">
-                                <input type="checkbox" name="botcheck" style="display: none;">
+                    <div class="form-card" id="formContainer">
+                        <h3>Demande de rappel</h3>
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                            <input type="hidden" name="access_key" value="d30faa67-b86f-4cb9-890b-c2167e1726ae">
+                            <input type="hidden" name="subject" value="Nouveau message de Legendre Électricité">
+                            <input type="checkbox" name="botcheck" style="display: none;">
 
-                                <div class="form-group">
-                                    <label for="nom">Nom / Entreprise</label>
-                                    <input type="text" id="nom" name="nom" required placeholder="Jean Dupont">
-                                </div>
-                                <div class="form-group">
-                                    <label for="telephone">Téléphone</label>
-                                    <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00">
-                                </div>
-                                <div class="form-group">
-                                    <label for="besoin">Votre besoin</label>
-                                    <textarea id="besoin" name="besoin" rows="4" required placeholder="Décrivez votre problème ou votre projet électrique…"></textarea>
-                                </div>
-                                <button type="submit" class="btn-submit" id="submitBtn">Envoyer ma demande →</button>
-                            </form>
-                        </div>
-                        
-                        <div class="success-box" id="successBox">
+                            <div class="form-group">
+                                <label for="nom">Nom / Entreprise</label>
+                                <input type="text" id="nom" name="nom" required placeholder="Jean Dupont">
+                            </div>
+                            <div class="form-group">
+                                <label for="telephone">Téléphone</label>
+                                <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00">
+                            </div>
+                            <div class="form-group">
+                                <label for="besoin">Votre besoin</label>
+                                <textarea id="besoin" name="besoin" rows="4" required placeholder="Décrivez votre problème ou votre projet électrique…"></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Envoyer ma demande →</button>
+                        </form>
+
+                        <div class="success-overlay" id="successMessage">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            <h4>Message envoyé !</h4>
-                            <p>Merci, je vous recontacte dans les plus brefs délais.</p>
+                            <h4>Message envoyé avec succès</h4>
+                            <p>Je vous recontacte rapidement.</p>
                         </div>
                     </div>
                 </div>
@@ -834,15 +859,16 @@
     </footer>
 
     <script>
-        function sendForm(event) {
+        function handleFormSubmit(event) {
             event.preventDefault();
             
             var form = document.getElementById('contactForm');
-            var submitBtn = document.getElementById('submitBtn');
             var formData = new FormData(form);
             
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Envoi en cours...";
+            var btn = form.querySelector('.btn-submit');
+            btn.style.opacity = '0.5';
+            btn.disabled = true;
+            btn.innerText = 'Envoi en cours...';
 
             fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
@@ -850,18 +876,20 @@
             })
             .then(function(response) {
                 if (response.ok) {
-                    document.getElementById('formContent').style.display = 'none';
-                    document.getElementById('successBox').style.display = 'flex';
+                    document.getElementById('successMessage').style.display = 'flex';
+                    form.reset();
                 } else {
-                    alert("Une erreur est survenue. Merci de réessayer.");
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = "Envoyer ma demande →";
+                    alert("Une erreur est survenue lors de l'envoi. Merci de réessayer.");
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                    btn.innerText = 'Envoyer ma demande →';
                 }
             })
             .catch(function(error) {
-                alert("Erreur de réseau. Vérifiez votre connexion.");
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Envoyer ma demande →";
+                alert("Erreur de connexion. Merci de vérifier votre réseau.");
+                btn.style.opacity = '1';
+                btn.disabled = false;
+                btn.innerText = 'Envoyer ma demande →';
             });
         }
     </script>
